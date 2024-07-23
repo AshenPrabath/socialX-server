@@ -1,9 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { PostModel, Post } from './models';
-// import { CommentModel, Comment } from './models';
-import { CommentModel } from './models/comment';
-import { Comment } from './models/comment';
+import { CommentModel, Comment } from './models';
 
 const router = express.Router();
 
