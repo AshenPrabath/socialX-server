@@ -11,7 +11,7 @@ router.post(
   '/:id',
   [
     check('author').isString().notEmpty().withMessage('Author is required'),
-    check('text').isString().notEmpty().withMessage('Text is required'),
+    check('content').isString().notEmpty().withMessage('Text is required'),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
