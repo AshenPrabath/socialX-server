@@ -1,15 +1,29 @@
 import express from 'express';
-import { connectToDatabase } from '../components/database';
-import routes from './routes';
+import mongoose from 'mongoose';
+import postsRouter from './routes/posts';
+import commentsRouter from './routes/comments';
 
 const app = express();
 const port = 3001;
 
+// Middleware
 app.use(express.json());
 
-app.use('/api', routes);
+const MONGO_URI = 'mongodb+srv://ashenprabath:ashenprabath@cluster0.l3oznef.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'; // Change this to your MongoDB connection string
 
-app.listen(port, async () => {
-  await connectToDatabase();
-  console.log(`Server is running on http://localhost:${port}`);
+// Routes
+app.use('/api/posts', postsRouter);
+app.use('/api/comments', commentsRouter);
+
+// Database connection
+try {
+  mongoose.connect(MONGO_URI);
+  console.log('Connected to MongoDB');
+} catch (error) {
+  console.error('Error connecting to MongoDB:', error);
+}
+
+// Start server
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
