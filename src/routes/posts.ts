@@ -20,6 +20,7 @@ router.post(
   [
     check('title').isString().notEmpty().withMessage('Title is required'),
     check('content').isString().notEmpty().withMessage('Content is required'),
+    check('color').isString().notEmpty().withMessage('Color is required'),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
@@ -57,6 +58,7 @@ router.put(
   [
     check('title').optional().isString(),
     check('content').optional().isString(),
+    check('color').optional().isString(),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);

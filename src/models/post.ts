@@ -4,6 +4,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 export interface Post extends Document {
   title: string;
   content: string;
+  color: string;
   comments?: mongoose.Types.ObjectId[]; // Array of ObjectId
   created_at?: Date;
 }
@@ -11,6 +12,7 @@ export interface Post extends Document {
 const PostSchema: Schema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
+  color: { type: String, required: true },
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
   created_at: { type: Date, default: Date.now }
 });
